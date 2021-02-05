@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { MessengerService } from '../../../../services/messenger.service';
 
 @Component({
   selector: 'app-product-item',
@@ -9,9 +10,11 @@ import { Product } from 'src/app/models/product';
 export class ProductItemComponent implements OnInit {
 
   @Input() productItem: Product;
-  constructor() { }
+  constructor(private msg: MessengerService) { }
 
   ngOnInit(): void {
   }
-
+  handleAddToCarat(){
+    this.msg.sendMsg(this.productItem);
+  }
 }
